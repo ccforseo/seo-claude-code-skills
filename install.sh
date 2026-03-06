@@ -24,31 +24,35 @@ SKILLS=(
 
 REPO_URL="https://github.com/ccforseo/seo-claude-code-skills.git"
 
+# ── Helpers ───────────────────────────────────────────────────────────
+info()    { echo -e "${BOLD}$1${RESET}"; }
+success() { echo -e "${GREEN}$1${RESET}"; }
+warn()    { echo -e "${YELLOW}$1${RESET}"; }
+error()   { echo -e "${RED}$1${RESET}"; exit 1; }
+
 # ── Target platform ───────────────────────────────────────────────────
 # Usage: install.sh [--target claude|codex|antigravity|all]
+get_platform_dir() {
+  case "$1" in
+    claude)       echo "$HOME/.claude/skills" ;;
+    codex)        echo "$HOME/.codex/skills" ;;
+    antigravity)  echo "$HOME/.agent/skills" ;;
+    *)            error "Unknown target: $1. Use claude, codex, antigravity, or all." ;;
+  esac
+}
+
 TARGET="${1:-}"
 case "$TARGET" in
   --target)  TARGET="${2:-claude}" ;;
   "")        TARGET="claude" ;;
 esac
 
-declare -A PLATFORM_DIRS=(
-  [claude]="$HOME/.claude/skills"
-  [codex]="$HOME/.codex/skills"
-  [antigravity]="$HOME/.agent/skills"
-)
-
 if [[ "$TARGET" == "all" ]]; then
   INSTALL_TARGETS=("claude" "codex" "antigravity")
 else
-  [[ -z "${PLATFORM_DIRS[$TARGET]+x}" ]] && error "Unknown target: $TARGET. Use claude, codex, antigravity, or all."
+  get_platform_dir "$TARGET" > /dev/null
   INSTALL_TARGETS=("$TARGET")
 fi
-
-info()    { echo -e "${BOLD}$1${RESET}"; }
-success() { echo -e "${GREEN}$1${RESET}"; }
-warn()    { echo -e "${YELLOW}$1${RESET}"; }
-error()   { echo -e "${RED}$1${RESET}"; exit 1; }
 
 # ── Detect OS ──────────────────────────────────────────────────────────
 detect_os() {
@@ -88,7 +92,8 @@ resolve_source() {
 # ── Install skills ─────────────────────────────────────────────────────
 install_skills() {
   for target in "${INSTALL_TARGETS[@]}"; do
-    local target_dir="${PLATFORM_DIRS[$target]}"
+    local target_dir
+    target_dir="$(get_platform_dir "$target")"
     mkdir -p "$target_dir"
 
     local installed=0
