@@ -43,6 +43,8 @@ Skills install to `~/.claude/skills/`. Open Claude Code and start typing.
 curl -fsSL https://raw.githubusercontent.com/ccforseo/seo-claude-code-skills/main/install.sh | bash -s -- --target all
 ```
 
+> **Want to analyze your own GSC, GA4, and Ads data?** The [SEO Command Center](https://ccforseo.com/claude-code-for-seo) adds data pipelines, report templates, and CLAUDE.md configs on top of these free skills. [Learn more](https://ccforseo.com/claude-code-for-seo)
+
 ---
 
 ## All 8 Skills
