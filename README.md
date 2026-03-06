@@ -216,17 +216,44 @@ Find pages on your site that compete against each other for the same keywords. C
 
 ## How Skills Work Together
 
-These skills reference each other. A typical workflow chains them:
+These skills reference each other. A typical SEO workflow chains them in sequence:
 
 ```
-/keyword-cluster keywords.csv        # Group keywords into clusters
-/content-brief "target keyword"      # Brief for the top cluster
-/schema-gen Article /blog/new-post   # Add structured data
-/meta-optimizer /blog/new-post       # Optimize title and description
-/internal-links sitemap.xml          # Connect to existing content
-/seo-audit https://yoursite.com      # Verify everything passes
-/ai-visibility --brand "you"         # Track AI citation pickup
-/cannibalization --query "keyword"   # Confirm no overlap
+                                    YOUR SEO WORKFLOW
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  1. RESEARCH                                                        │
+  │     /keyword-cluster keywords.csv                                   │
+  │     Group raw keywords into topic clusters by intent                │
+  │                         │                                           │
+  │                         ▼                                           │
+  │  2. PLAN                                                            │
+  │     /content-brief "target keyword"                                 │
+  │     Generate a writer-ready brief for the top cluster               │
+  │                         │                                           │
+  │                         ▼                                           │
+  │  3. OPTIMIZE                                                        │
+  │     /schema-gen Article /blog/new-post                              │
+  │     /meta-optimizer /blog/new-post                                  │
+  │     Add structured data, optimize title and description             │
+  │                         │                                           │
+  │                         ▼                                           │
+  │  4. CONNECT                                                         │
+  │     /internal-links sitemap.xml                                     │
+  │     Link new content to existing pages                              │
+  │                         │                                           │
+  │                         ▼                                           │
+  │  5. VERIFY                                                          │
+  │     /seo-audit https://yoursite.com                                 │
+  │     /cannibalization --query "keyword"                              │
+  │     Confirm technical SEO passes, no keyword overlap                │
+  │                         │                                           │
+  │                         ▼                                           │
+  │  6. TRACK                                                           │
+  │     /ai-visibility --brand "yoursite"                               │
+  │     Monitor AI search citations over time                           │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
